@@ -4,7 +4,7 @@ var Promise = require('bluebird');
 module.exports = function (MR) {
 
 	var userMRM = MR.userModel({
-		online: { type: Boolean, default: true},
+		karma: { type: Number, default: 0},
 		fb: {
 			id: {type: String, required: true},
 			first_name: {type: String, required: true},

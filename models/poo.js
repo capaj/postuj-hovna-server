@@ -6,8 +6,6 @@ module.exports = function (MR) {
 		creation_date: { type: Date, default: Date.now },
 		loc: { type: [Number], index: '2dsphere', required: true},
 		pieces: { type: Number, default: 1},
-		rating: { type: Number, default: 5},
-		notoriety: { type: Number, default: 0},
 		photos: { type: [Number], default: []}
 	}, {
 		permissions: {
