@@ -1,0 +1,35 @@
+{
+  "name": "postuj-hovna-server",
+  "version": "0.0.1",
+  "description": "hackaton app for reporting dog poo",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/capaj/postuj-hovna-server.git"
+  },
+  "keywords": [
+    "moonridge",
+    "praguehacks"
+  ],
+  "dependencies": {
+    "bluebird": "^2.9.27",
+    "config": "^1.14.0",
+    "glob": "^5.0.10",
+    "lodash": "~3.9",
+    "mongoose": "^4.0.5",
+    "moonridge": "^0.8.5",
+    "request": "^2.57.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.2"
+  },
+  "author": "capajj@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/capaj/postuj-hovna-server/issues"
+  },
+  "homepage": "https://github.com/capaj/postuj-hovna-server#readme"
+}
