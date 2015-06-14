@@ -5,11 +5,11 @@ module.exports = function (MR) {
 	var poo = MR.model('poo', {
 		creation_date: { type: Date, default: Date.now },
 		loc: { type: [Number], index: '2dsphere', required: true},
-		pieces: { type: Number, default: 1},
+		notoriety: { type: Number, default: 1},
 		photos: { type: [Number], default: []}
 	}, {
 		permissions: {
-			C: 1,
+			C: 0,
 			R: 0,
 			U: 5,
 			D: 5
