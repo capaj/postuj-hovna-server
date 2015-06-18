@@ -3,10 +3,10 @@ var Schema = require('mongoose').Schema;
 var dateType = { type: Date, default: Date.now };
 module.exports = function (MR) {
 
-	var poo = MR.model('poo', {
+	var photo = MR.model('photo', {
 		creation_date: dateType,
-		last_refresh: dateType,
-		photos: { type: [{ type: Schema.Types.ObjectId, ref: 'photo'}], default: []}
+		loc: {type: [Number], index: '2dsphere', required: true},
+		name: {type: String, required: true}
 	}, {
 		permissions: {
 			C: 0,
@@ -20,5 +20,5 @@ module.exports = function (MR) {
 
 	});
 
-	return poo;
+	return photo;
 };

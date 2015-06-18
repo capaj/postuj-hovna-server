@@ -2,13 +2,14 @@ var Schema = require('mongoose').Schema;
 
 module.exports = function (MR) {
 
+	var dateType = {type: Date, default: Date.now};
 	var bin = MR.model('bin', {
-		creation_date: { type: Date, default: Date.now },
-		loc: { type: [Number], index: '2dsphere', required: true},
+		creation_date: dateType,
 		has_bags: { type: Boolean, default: null},
-		bags_input_date: { type: Date, default: Date.now },
+		bags_input_date: dateType,
 		text: { type: String},
-		photos: { type: [Number], default: []}
+		removed: {type: Boolean},	//when this bin does not exist anymore
+		photo: { type: Schema.Types.ObjectId, ref: 'photo'}
 	}, {
 		permissions: {
 			C: 0,
