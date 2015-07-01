@@ -1,4 +1,4 @@
-var models = ['user', 'photo', 'poo', 'bin'];
+var models = ['user', 'poo', 'bin'];
 
 module.exports = function(MR){
 
