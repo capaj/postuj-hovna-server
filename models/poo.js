@@ -5,6 +5,7 @@ module.exports = function (MR) {
 	var poo = MR.model('poo', {
 		creation_date: { type: Date, default: Date.now },
 		cleared_date: { type: Date},
+		cleared_by: { type: Schema.Types.ObjectId, ref: 'user'},
 		loc: { type: [Number], index: '2dsphere', required: true},
 		notoriety: { type: Number, default: 1},
 		photos: { type: [Number], default: []}

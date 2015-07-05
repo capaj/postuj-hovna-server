@@ -5,7 +5,7 @@ module.exports = function (MR) {
 	var bin = MR.model('bin', {
 		creation_date: dateType,
 		loc: { type: [Number], index: '2dsphere', required: true},
-		bag_pieces: { type: Number, default: 0},
+		bag_count: { type: Number, default: 0},
 		last_input_date: dateType,
 		text: { type: String},
 		photos: { type: [Number], default: []}

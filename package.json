@@ -20,7 +20,7 @@
     "glob": "^5.0.10",
     "lodash": "~3.9",
     "mongoose": "^4.0.5",
-    "moonridge": "^0.8.5",
+    "moonridge": "^0.8.6",
     "request": "^2.57.0"
   },
   "devDependencies": {
