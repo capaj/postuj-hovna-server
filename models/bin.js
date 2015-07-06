@@ -1,12 +1,12 @@
 var Schema = require('mongoose').Schema;
-
+var dateType = { type: Date, default: Date.now };
 module.exports = function (MR) {
 
 	var bin = MR.model('bin', {
-		creation_date: { type: Date, default: Date.now },
+		creation_date: dateType,
 		loc: { type: [Number], index: '2dsphere', required: true},
-		has_bags: { type: Boolean, default: null},
-		bags_input_date: { type: Date, default: Date.now },
+		bag_count: { type: Number, default: 0},
+		last_input_date: dateType,
 		text: { type: String},
 		photos: { type: [Number], default: []}
 	}, {
