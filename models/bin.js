@@ -5,8 +5,11 @@ module.exports = function (MR) {
 	var bin = MR.model('bin', {
 		creation_date: dateType,
 		loc: { type: [Number], index: '2dsphere', required: true},
-		bag_count: { type: Number, default: 0},
-		last_input_date: dateType,
+		bag_count: {
+      value: { type: Number, default: 0 },
+      date: dateType,
+      by: { type: Schema.Types.ObjectId, ref: 'user'}
+    },
 		text: { type: String},
 		photos: { type: [Number], default: []}
 	}, {

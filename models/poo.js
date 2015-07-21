@@ -7,7 +7,7 @@ module.exports = function (MR) {
 		cleared_date: { type: Date},
 		cleared_by: { type: Schema.Types.ObjectId, ref: 'user'},
 		loc: { type: [Number], index: '2dsphere', required: true},
-		notoriety: { type: Number, default: 1},
+		seen_by: { type: [{ type: Schema.Types.ObjectId, ref: 'user'}]},
 		photos: { type: [Number], default: []}
 	}, {
 		permissions: {
@@ -18,7 +18,8 @@ module.exports = function (MR) {
 		},
 		schemaInit: function (schema) {
 			schema.index({ creation_date: 1, loc: 1 }, { unique: true, dropDups: true });
-		}
+    }
+
 
 	});
 
