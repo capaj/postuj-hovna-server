@@ -1,4 +1,4 @@
-var models = ['user', 'poo', 'bin'];
+var models = ['user', 'poo', 'bin', 'bin-state'];
 
 module.exports = function(MR){
 
