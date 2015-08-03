@@ -18,14 +18,12 @@ module.exports = function (MR) {
 			hometown: {id: String, name: String}
 		},
 		creation_date: { type: Date, default: Date.now },
-		access_token: { type: String, permissions:{R:5, W:5}},   //FB access token
 		privilige_level: {
 			type: Number, default: 10, min:0, max: 5,
 			permissions:{R: 0, W: 5}
 		},
 		settings: {
-			fb_publish: {type:Boolean, default:true},
-			page_limit: {type: Number, min: 1, max: 300}
+			fb_publish: {type:Boolean, default:true}
 		}
 	}, {
 		permissions: {

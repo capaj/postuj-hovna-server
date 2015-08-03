@@ -1,4 +1,6 @@
 var Schema = require('mongoose').Schema;
+var karmaIncreaseOnCreate = require('./karma-increase-on-create');
+
 var dateType = { type: Date, default: Date.now };
 module.exports = function (MR) {
 
@@ -21,6 +23,8 @@ module.exports = function (MR) {
 		},
 		schemaInit: function (schema) {
 			schema.index({ creation_date: 1, loc: 1 }, { unique: true, dropDups: true });
+
+      karmaIncreaseOnCreate(schema, 3);
 		}
 
 	});
