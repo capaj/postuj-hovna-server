@@ -1,5 +1,4 @@
 var request = require('request');
-var Promise = require('bluebird');
 
 module.exports = function (MR) {
 
@@ -34,21 +33,21 @@ module.exports = function (MR) {
 		},
 		statics: {
 			fetchFBAcc: function (token) {
-				var deferred = Promise.defer();
-				request('https://graph.facebook.com/me?access_token=' + token + '&fields=id,email,first_name,last_name,username,birthday,gender,installed,verified,currency,location,hometown', function (error, response, body) {
-					if (!error && response.statusCode == 200) {
-						var fbAccDetails = JSON.parse(body);
-						deferred.resolve(fbAccDetails);
-					} else {
-						deferred.reject(error);
-					}
-				});
-				return deferred.promise;
+        return new Promise(function (resolve, reject) {
+          request('https://graph.facebook.com/me?access_token=' + token + '&fields=id,email,first_name,last_name,username,birthday,gender,installed,verified,currency,location,hometown', function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+              var fbAccDetails = JSON.parse(body);
+              resolve(fbAccDetails);
+            } else {
+              reject(error);
+            }
+          });
+        });
 			}
 		}
 	});
 
-	userMRM.model.on('create', function (user) {
+	userMRM.schema.on('create', function (user) {
 		console.log("created user: " + user);
 	});
 

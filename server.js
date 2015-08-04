@@ -4,9 +4,36 @@ mongoose.set('debug', true);
 var config = require('config');
 var express = require('express');
 var MR = Moonridge(mongoose, config.mongo);
-require('./models/models')(MR);
+var models = require('./models/models')(MR);
 
 var server = MR.bootstrap(8020);
 require('./lib/photos')(server);
 
 server.expressApp.use('/img', express.static('content'));
+
+server.expose({
+  MR: {
+    authorize: function(data) {	//example of a later authorization, typical for any public facing apps
+      var socket = this;
+      var userModel = models.user;
+      console.log('authorize data', data);
+      return userModel.fetchFBAcc(data.token).then(function(acc){
+        return userModel.findOne({fb: { id: acc.id}}).exec().then(function(user) {
+          if (user) {
+            console.log("Authenticated user: ", user);
+            socket.moonridge.user = user;
+          } else {
+            console.log('did not find such user-creating');
+            userModel.create({fb: acc}).then(function(user) {
+              console.log("created and authenticated user: ", user);
+              socket.moonridge.user = user;
+            });
+          }
+        }, function (err) {
+          console.log("authorize error " + err);
+        });
+      });
+
+    }
+  }
+});

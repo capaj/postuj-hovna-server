@@ -1,3 +1,5 @@
+var userModel = require('./user').model;
+
 module.exports = function(schema, points) {
   schema.on('create', function(doc) {
     if (doc.owner) {
