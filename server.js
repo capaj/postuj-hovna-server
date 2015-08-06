@@ -15,7 +15,7 @@ server.expose({
   MR: {
     authorize: function(data) {	//example of a later authorization, typical for any public facing apps
       var socket = this;
-      var userModel = models.user;
+      var userModel = models.user.model;
       console.log('authorize data', data);
       return userModel.fetchFBAcc(data.token).then(function(acc){
         return userModel.findOne({fb: { id: acc.id}}).exec().then(function(user) {
@@ -24,7 +24,7 @@ server.expose({
             socket.moonridge.user = user;
           } else {
             console.log('did not find such user-creating');
-            userModel.create({fb: acc}).then(function(user) {
+            return userModel.create({fb: acc}).then(function(user) {
               console.log("created and authenticated user: ", user);
               socket.moonridge.user = user;
             });
