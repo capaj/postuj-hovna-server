@@ -13,11 +13,10 @@ server.expressApp.use('/img', express.static('content'));
 
 server.expose({
   MR: {
-    authorize: function(data) {	//example of a later authorization, typical for any public facing apps
+    authorize: function(accessToken) {	//example of a later authorization, typical for any public facing apps
       var socket = this;
       var userModel = models.user.model;
-      console.log('authorize data', data);
-      return userModel.fetchFBAcc(data.accessToken).then(function(acc){
+      return userModel.fetchFBAcc(accessToken).then(function(acc){
         return userModel.findOne({'fb.id': acc.id}).exec().then(function(user) {
           if (user) {
             console.log("Authenticated user: ", user);
