@@ -5,7 +5,7 @@ module.exports = function (MR) {
 	var userMRM = MR.userModel({
 		karma: { type: Number, default: 0},
 		fb: {
-			id: {type: String, required: true},
+			id: {type: String, required: true, unique: true},
 			first_name: {type: String},
 			last_name: {type: String},
 			gender: {type: String},
@@ -18,7 +18,7 @@ module.exports = function (MR) {
 		},
 		creation_date: { type: Date, default: Date.now },
 		privilige_level: {
-			type: Number, default: 10, min:0, max: 5,
+			type: Number, default: 5, min: 0, max: 20,
 			permissions:{R: 0, W: 5}
 		},
 		settings: {
@@ -34,7 +34,7 @@ module.exports = function (MR) {
 		statics: {
 			fetchFBAcc: function (token) {
         return new Promise(function (resolve, reject) {
-          request('https://graph.facebook.com/me?access_token=' + token + '&fields=id,email,first_name,last_name,username,birthday,gender,installed,verified,location,hometown', function (error, response, body) {
+          request('https://graph.facebook.com/me?access_token=' + token + '&fields=id,email,gender,installed,verified,location,hometown', function (error, response, body) {
             if (error) {
               reject(error);
             } else {

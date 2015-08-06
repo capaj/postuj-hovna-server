@@ -17,16 +17,19 @@ server.expose({
       var socket = this;
       var userModel = models.user.model;
       console.log('authorize data', data);
-      return userModel.fetchFBAcc(data.token).then(function(acc){
-        return userModel.findOne({fb: { id: acc.id}}).exec().then(function(user) {
+      return userModel.fetchFBAcc(data.accessToken).then(function(acc){
+        return userModel.findOne({'fb.id': acc.id}).exec().then(function(user) {
           if (user) {
             console.log("Authenticated user: ", user);
             socket.moonridge.user = user;
+            return user;
+
           } else {
             console.log('did not find such user-creating');
             return userModel.create({fb: acc}).then(function(user) {
               console.log("created and authenticated user: ", user);
               socket.moonridge.user = user;
+              return user;
             });
           }
         }, function (err) {
