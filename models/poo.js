@@ -12,8 +12,8 @@ module.exports = function (MR) {
 		permissions: {
 			C: 0,
 			R: 0,
-			U: 5,
-			D: 5
+			U: 10,
+			D: 10
 		},
 		schemaInit: function (schema) {
 			schema.index({ creation_date: 1, loc: 1 }, { unique: true, dropDups: true });
