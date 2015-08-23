@@ -1,16 +1,15 @@
 var express = require('express');
+var MR = require('./mr-init');
 
-var MRServer = require('./db-init');
-var server = MRServer.bootstrap(8020);
+var server = MR.bootstrap(8020);
+
 require('./lib/photos')(server);
-
 server.expressApp.use('/img', express.static('content'));
-
 server.expose({
   MR: {
     authorize: function(accessToken) {	//example of a later authorization, typical for any public facing apps
       var socket = this;
-      var userModel = MRServer.models.user;
+      var userModel = MR.models.user;
       return userModel.fetchFBAcc(accessToken).then(function(acc){
         return userModel.findOne({'fb.id': acc.id}).exec().then(function(user) {
           if (user) {

@@ -1,7 +1,7 @@
 {
   "name": "postuj-hovna-server",
   "version": "0.0.1",
-  "description": "hackaton app for reporting dog poo",
+  "description": "backend powering na app for reporting dog poo",
   "main": "server.js",
   "scripts": {
     "test": "mocha"
@@ -21,7 +21,7 @@
     "glob": "^5.0.10",
     "lodash": "~3.9",
     "mongoose": "^4.0.5",
-    "moonridge": "^0.8.6",
+    "moonridge": "^0.9.0",
     "request": "^2.57.0"
   },
   "devDependencies": {

@@ -1,9 +1,9 @@
-var Schema = require('mongoose').Schema;
+
 var karmaIncreaseOnCreate = require('./karma-increase-on-create');
 
 var dateType = {type: Date, default: Date.now};
 module.exports = function(MR) {
-
+  var Schema = MR.mongoose.Schema;
 	var bin = MR.model('bin', {
 		creation_date: dateType,
 		loc: {type: [Number], index: '2dsphere', required: true},

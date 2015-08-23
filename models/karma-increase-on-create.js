@@ -1,10 +1,14 @@
 module.exports = function(schema, points) {
 
   schema.on('create', function(doc) {
+    var MR = require('../mr-init');
     if (doc.owner) {
-      var MR = require('../db-init');
-      console.log("doc.owner", doc.owner);
-      MR.models.user.findByIdAndUpdate(doc.owner, {$inc: {karma: points}}); //TODO find out why this is not working
+      var owner = doc.owner.valueOf();
+      MR.models.user.findByIdAndUpdate(owner, {$inc: {karma: points}}, function(err, result) {
+        if (err) {
+          console.error(err);
+        }
+      });
     }
   });
 };
