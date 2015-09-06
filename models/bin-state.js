@@ -3,7 +3,7 @@ var MR = require('moonridge');
 
 var Schema = MR.mongoose.Schema;
 var binState = MR.model('bin_state', {
-  photoIds: {type: Schema.Types.ObjectId, ref: 'photo'},
+  photo: {type: Schema.Types.ObjectId, ref: 'photo'},
   bag_count: {type: Number, default: 0}
 }, {
   permissions: {

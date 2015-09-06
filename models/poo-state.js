@@ -3,7 +3,7 @@ var karmaIncreaseOnCreate = require('./../lib/karma-increase-on-create');
 var MR = require('moonridge');
 var Schema = MR.mongoose.Schema;
 var poo = MR.model('poo_state', {
-  photoIds: {type: Schema.Types.ObjectId, ref: 'photo'},
+  photo: {type: Schema.Types.ObjectId, ref: 'photo'},
   type: {type: String, required: true, enum: ['present', 'gone', 'cleared'], default: 'present'}
 }, {
   permissions: {
@@ -13,7 +13,7 @@ var poo = MR.model('poo_state', {
     D: 10
   },
   schemaInit: function(schema) {
-    schema.index({creation_date: 1, loc: 1}, {unique: true, dropDups: true});
+    schema.index({type: 1, owner: 1, photo: 1}, {unique: true, dropDups: true});
 
     karmaIncreaseOnCreate(schema, 2);
   }
