@@ -1,9 +1,7 @@
-var modelNames = ['user', 'poo', 'bin', 'bin-state'];
+var modelNames = ['user', 'poo-state', 'photo', 'bin-state'];
+var models = {};
+modelNames.forEach(function(modelName) {
+  models[modelName] = require('./' + modelName);
+});
 
-module.exports = function(MR) {
-  var models = {};
-  modelNames.forEach(function(modelName) {
-    models[modelName] = require('./' + modelName)(MR);
-  });
-  return models;
-};
+module.exports = models;

@@ -1,6 +1,9 @@
 var express = require('express');
-var MR = require('./mr-init');
-
+var MR = require('moonridge');
+var config = require('config');
+MR.connect(config.mongo);
+require('./models/models');
+MR.mongoose.set('debug', true);
 var server = MR.bootstrap(8020);
 
 require('./lib/photos')(server);
