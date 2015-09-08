@@ -3,7 +3,6 @@ var karmaIncreaseOnCreate = require('./../lib/karma-increase-on-create');
 var dateType = {type: Date, default: Date.now};
 var MR = require('moonridge');
 
-var Schema = MR.mongoose.Schema;
 var photo = MR.model('photo', {
   capture_date: dateType,
   type: {type: String, required: true},

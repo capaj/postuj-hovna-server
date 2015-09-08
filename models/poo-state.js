@@ -1,8 +1,10 @@
 var karmaIncreaseOnCreate = require('./../lib/karma-increase-on-create');
-
+var dateType = {type: Date, default: Date.now};
 var MR = require('moonridge');
 var Schema = MR.mongoose.Schema;
+
 var poo = MR.model('poo_state', {
+  timestamp: dateType,
   photo: {type: Schema.Types.ObjectId, ref: 'photo'},
   type: {type: String, required: true, enum: ['present', 'gone', 'cleared'], default: 'present'}
 }, {
