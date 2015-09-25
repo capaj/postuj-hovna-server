@@ -2,7 +2,6 @@ var karmaIncreaseOnCreate = require('./../lib/karma-increase-on-create');
 var MR = require('moonridge');
 var dateType = {type: Date, default: Date.now};
 
-
 var binState = MR.model('bin_state', {
   timestamp: dateType,
   photo: {type: MR.mongoose.Schema.Types.ObjectId, ref: 'photo'},
@@ -22,6 +21,5 @@ var binState = MR.model('bin_state', {
   }
 
 });
-var dateType = {type: Date, default: Date.now};
 
 module.exports = binState;
